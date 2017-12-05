@@ -27,13 +27,13 @@ componentDidMount(){
   render() {
     return (
       <div className="App">
-
+      <div className = "header">
+        <h1> Star Wars Data </h1>
+      </div>
       {
-      this.state.movieCrawl.length === 7 &&
-      <QuoteScroll movie = {this.state.movieCrawl[0]}/>
+        this.state.movieCrawl.length !== 0 &&
+        <QuoteScroll movie = {this.state.movieCrawl[1]}/>
       }
-
-       
         <Controls />
       </div>
     );
