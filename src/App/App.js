@@ -27,7 +27,13 @@ componentDidMount(){
   render() {
     return (
       <div className="App">
-        <QuoteScroll movie = {this.state.movieCrawl[0]}/>
+
+      {
+      this.state.movieCrawl.length === 7 &&
+      <QuoteScroll movie = {this.state.movieCrawl[0]}/>
+      }
+
+       
         <Controls />
       </div>
     );

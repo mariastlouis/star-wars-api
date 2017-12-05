@@ -2,10 +2,12 @@ import React from 'react'
 import PropTypes from 'prop-types';
 
 
-const QuoteScroll = () => {
+const QuoteScroll = ({movie}) => {
   return (
-    <div className = "controls">
-      <p> Quote scroll hooked up </p>
+    <div className = "quoteScroll">
+     {movie.openingCrawl}
+     {movie.title}
+
     </div>
   )
 }
