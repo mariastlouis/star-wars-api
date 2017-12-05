@@ -51,7 +51,7 @@ componentDidMount(){
   fetch('https://swapi.co/api/people/')
   .then(response => response.json())
   .then(arrayOfCharacters => this.fetchCharacters(arrayOfCharacters.results)).then(character => {
-     debugger;
+    this.setState({character})
   })
 }
 
