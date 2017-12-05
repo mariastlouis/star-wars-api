@@ -2,12 +2,12 @@ import React from 'react'
 import PropTypes from 'prop-types';
 
 
-const Controls = () => {
+const QuoteScroll = () => {
   return (
     <div className = "controls">
-      <p> Controls hooked up </p>
+      <p> Quote scroll hooked up </p>
     </div>
   )
 }
 
-export default Controls;
+export default QuoteScroll;
