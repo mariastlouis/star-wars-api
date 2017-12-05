@@ -5,7 +5,8 @@ const fetchMovieCrawl = () => {
     const movieCrawlObject = {
       title: movie.title,
       releaseData: movie.release_date,
-      openingCrawl: movie.opening_crawl
+      openingCrawl: movie.opening_crawl,
+      id: movie.episode_id
     };
     return movieCrawlObject;
   }));

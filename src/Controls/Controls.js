@@ -5,7 +5,8 @@ import PropTypes from 'prop-types';
 const Controls = () => {
   return (
     <div className = "controls">
-      <p> Controls hooked up </p>
+      <button>People </button>
+       <button>Planets </button>
     </div>
   )
 }
