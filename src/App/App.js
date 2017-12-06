@@ -3,6 +3,7 @@ import './App.css';
 import Controls from '../Controls/Controls.js'
 import QuoteScroll from '../QuoteScroll/QuoteScroll.js'
 import fetchMovieCrawl from '../helper.js'
+import CardContainer from '../CardContainer/CardContainer.js'
 
 class App extends Component {
   constructor () {
@@ -93,8 +94,9 @@ fetchPlanetSpecies(peopleData) {
         this.state.movieCrawl.length !== 0 &&
         <QuoteScroll movie = {this.setRandomMovie()}/>
       }
-        <Controls clickCategory = {this.clickCategory}
-                  message = 'hello' />
+        <Controls clickCategory = {this.clickCategory} />
+        <CardContainer characterArray = {this.state.character}/>
+       
       </div>
     );
   }
