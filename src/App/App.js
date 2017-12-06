@@ -9,10 +9,11 @@ class App extends Component {
     super ();
     this.state ={
       movieCrawl:[],
-      people: []
+      character: []
     }
     this.loadMovieArray.bind(this)
-     this.setRandomMovie = this.setRandomMovie.bind(this);
+     this.setRandomMovie.bind(this);
+     this.clickCategory = this.clickCategory.bind(this)
   }
   
 loadMovieArray() {
@@ -30,30 +31,48 @@ setRandomMovie() {
     return this.setRandomMovie;
   }
 
+clickCategory(category) {
+  if (category === 'character') {
+    this.getCharacter()
+  } else if (category === 'planet') {
+    console.log('planet data clicked')
+  } else if (category === 'vehicle') {
+    console.log('vehicle data clicked')
+  } else {
+    console.log('error')
+  }
+}
 
-async componentDidMount(){
+
+
+
+componentDidMount(){
   this.loadMovieArray()
-   const peoplelFetch = await fetch('https://swapi.co/api/people/')
-    const peopleData  = await peoplelFetch.json()
-    const people = await this.fetchPlanetSpecies(peopleData.results);
-    this.setState({people})
+  
   }
 
+async getCharacter () {
+const peoplelFetch = await fetch('https://swapi.co/api/people/')
+    const peopleData  = await peoplelFetch.json()
+    const character = await this.fetchPlanetSpecies(peopleData.results);
+    this.setState({character})
+}
 
 fetchPlanetSpecies(peopleData) {
-    const unresolvedPromises = peopleData.map(async(people) => {
-      let homeworldFetch = await fetch(people.homeworld)
+    const unresolvedPromises = peopleData.map(async(character) => {
+      let homeworldFetch = await fetch(character.homeworld)
       let homeworldData = await homeworldFetch.json()
-      let speciesFetch = await fetch(people.species)
+      let speciesFetch = await fetch(character.species)
       let speciesData = await speciesFetch.json()
 
       return {
-        name: people.name,
+        name: character.name,
         data: {
           homeworld: homeworldData.name,
           species: speciesData.name,
           language: speciesData.language,
-          population: homeworldData.population
+          population: homeworldData.population,
+          category: character
         }
       }
     });
@@ -74,7 +93,8 @@ fetchPlanetSpecies(peopleData) {
         this.state.movieCrawl.length !== 0 &&
         <QuoteScroll movie = {this.setRandomMovie()}/>
       }
-        <Controls />
+        <Controls clickCategory = {this.clickCategory}
+                  message = 'hello' />
       </div>
     );
   }
