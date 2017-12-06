@@ -9,7 +9,7 @@ class App extends Component {
     super ();
     this.state ={
       movieCrawl:[],
-      character: []
+      people: []
     }
     this.loadMovieArray.bind(this)
      this.setRandomMovie = this.setRandomMovie.bind(this);
@@ -31,41 +31,37 @@ setRandomMovie() {
   }
 
 
-  // componentDidMount() {
-  //   fetch('http://localhost:3001/api/frontend-staff')
-  //     .then(response => response.json())
-  //     .then(({bio}) => this.fetchBio(bio))
-  //     .then(staff => this.setState({staff}))
-  // }
-
-  // fetchBio(arrayOfStaff) {
-  //   const unresolvedPromises = arrayOfStaff.map(staffMember => {
-  //     return fetch(staffMember.info).then(response => response.json())
-  //             .then(staffBio => Object.assign({}, {name: staffMember.name}, staffBio))
-  //   })
-  //   return Promise.all(unresolvedPromises)
-  // }
-
-componentDidMount(){
+async componentDidMount(){
   this.loadMovieArray()
-  fetch('https://swapi.co/api/people/')
-  .then(response => response.json())
-  .then(arrayOfCharacters => this.fetchCharacters(arrayOfCharacters.results)).then(character => {
-    this.setState({character})
-  })
-}
+   const peoplelFetch = await fetch('https://swapi.co/api/people/')
+    const peopleData  = await peoplelFetch.json()
+    const people = await this.fetchPlanetSpecies(peopleData.results);
+    this.setState({people})
+  }
 
-fetchCharacters(arrayOfCharacters) {
-  const unresolvedPromises = arrayOfCharacters.map(character =>{
-    return fetch (character.homeworld).then(response => response.json())
-    .then(homeworld =>{
-     return Object.assign({}, {name: character.name}, {homeworld: homeworld.name}, {population: homeworld.population})
-    
-    })
-  })
-  return Promise.all(unresolvedPromises)
- 
-}
+
+fetchPlanetSpecies(peopleData) {
+    const unresolvedPromises = peopleData.map(async(people) => {
+      let homeworldFetch = await fetch(people.homeworld)
+      let homeworldData = await homeworldFetch.json()
+      let speciesFetch = await fetch(people.species)
+      let speciesData = await speciesFetch.json()
+
+      return {
+        name: people.name,
+        data: {
+          homeworld: homeworldData.name,
+          species: speciesData.name,
+          language: speciesData.language,
+          population: homeworldData.population
+        }
+      }
+    });
+
+    return Promise.all(unresolvedPromises)
+  }
+
+
 
   
   render() {
