@@ -49,7 +49,7 @@ clickCategory(category) {
 
 componentDidMount(){
   this.loadMovieArray()
-  
+  this.getCharacter()
   }
 
 async getCharacter () {
@@ -69,11 +69,10 @@ fetchPlanetSpecies(peopleData) {
       return {
         name: character.name,
         data: {
-          homeworld: homeworldData.name,
-          species: speciesData.name,
-          language: speciesData.language,
-          population: homeworldData.population,
-          category: character
+          Species: speciesData.name,
+          Language: speciesData.language,
+          Homeworld: homeworldData.name,
+          Population: homeworldData.population,
         }
       }
     });
