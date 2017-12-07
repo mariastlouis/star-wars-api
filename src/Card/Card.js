@@ -5,8 +5,8 @@ import './Card.css';
 const Card = ({name, data}) => {
   
 const dataKeys = Object.keys(data);
-const dataRows = dataKeys.map(key => {
- return <li> <span className="accent"> {`${key}:`}</span>{` ${data[key]}`} </li> 
+const dataRows = dataKeys.map((key, index) => {
+ return <li key = {index}> <span className="accent"> {`${key}:`}</span>{` ${data[key]}`} </li> 
 
   });
 

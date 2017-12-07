@@ -15,6 +15,7 @@ const CardContainer = ({characterArray}) => {
         characterArray.map((character, index) =>{
           return (
             <Card
+            key = {index}
             name = {character.name}
             data = {character.data} />
             );
