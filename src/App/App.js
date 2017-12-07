@@ -54,6 +54,7 @@ clickCategory(category) {
 componentDidMount(){
   this.loadMovieArray()
   this.getCharacter()
+  this.getPlanet()
  
   }
 
@@ -87,16 +88,46 @@ async getPlanet () {
 
 fetchPlanetData(planetData) {
   const unresolvedPromises = planetData.map(async(planet) =>{
+    const planetResidents = planet.residents;
+    const residentPromises = planetResidents.map(async(resident) =>{
+      const residentFetch = await fetch (resident);
+      const residentData = await residentFetch.json();
+      return residentData.name;
+    });
+    const residentNames = await Promise.all(residentPromises)
+    // const residentPromises = await planet.residents.map(resident =>{
+    //   return {
+    //     resident
+    //   }
+    // })
+    
+
     return {
       name: planet.name,
       data: {
         Climate: planet.climate,
-        Population: planet.population
+        Population: planet.population,
+        Residents: residentNames
+        
       }
+
     }
+
   })
-  return Promise.all(unresolvedPromises)
+  return Promise.all(unresolvedPromises);
 }
+
+
+
+// async fetchPlanetResidents(planetData) {
+//   debugger;
+  // let unresolvedResidentPromises = residentArray.map(async(resident) =>{
+  //   let residentFetch = await fetch (resident.name)
+  //   let residentData = await residentFetch.json()
+  //   return residentData.name
+  // })
+  // return Promise.all(unresolvedResidentPromises)
+// }
 
 async getCharacter () {
 const peoplelFetch = await fetch('https://swapi.co/api/people/')
