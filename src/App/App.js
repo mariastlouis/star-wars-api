@@ -10,11 +10,13 @@ class App extends Component {
     super ();
     this.state ={
       movieCrawl:[],
-      character: []
+      character: [],
+      vehicle: [],
+      category: 'character'
     }
     this.loadMovieArray.bind(this)
-     this.setRandomMovie.bind(this);
-     this.clickCategory = this.clickCategory.bind(this)
+    this.setRandomMovie.bind(this);
+    this.clickCategory = this.clickCategory.bind(this)
   }
   
 loadMovieArray() {
@@ -35,16 +37,26 @@ setRandomMovie() {
 clickCategory(category) {
   if (category === 'character') {
     this.getCharacter()
+    this.setState({category: 'character'})
   } else if (category === 'planet') {
-    console.log('planet data clicked')
+    this.setState({category: 'planet'})
   } else if (category === 'vehicle') {
-    console.log('vehicle data clicked')
+    this.getVehicle()
+    this.setState({category: 'vehicle'})
   } else {
     console.log('error')
   }
 }
 
-
+getDataArray() {
+  if (this.state.character) {
+    return this.state.character
+  } else {
+  return this.state.vehicle 
+  } return this.getDataArray;
+  console.log('data array hooked up')
+  debugger;
+}
 
 
 componentDidMount(){
@@ -52,11 +64,32 @@ componentDidMount(){
   this.getCharacter()
   }
 
+async getVehicle () {
+  const vehicleFetch = await fetch('https://swapi.co/api/vehicles/')
+  const vehicleData = await vehicleFetch.json()
+  const vehicle = await this.fetchVehicleData(vehicleData.results)
+  this.setState({character: [], vehicle: vehicle})
+}
+
+fetchVehicleData(vehicleData) {
+  return vehicleData.map(vehicle =>{
+    return {
+      name: vehicle.name,
+      data: {
+        Model: vehicle.model,
+        Class: vehicle.vehicle_class,
+        Passengers: vehicle.passengers
+      }
+    }
+    })
+  
+}
+
 async getCharacter () {
 const peoplelFetch = await fetch('https://swapi.co/api/people/')
     const peopleData  = await peoplelFetch.json()
     const character = await this.fetchPlanetSpecies(peopleData.results);
-    this.setState({character})
+    this.setState({character: character, vehicle: []})
 }
 
 fetchPlanetSpecies(peopleData) {
@@ -82,8 +115,10 @@ fetchPlanetSpecies(peopleData) {
 
 
 
+
   
   render() {
+    const {category, film} = this.state;
     return (
       <div className="App">
       <div className = "header">
@@ -94,8 +129,9 @@ fetchPlanetSpecies(peopleData) {
         <QuoteScroll movie = {this.setRandomMovie()}/>
       }
         <Controls clickCategory = {this.clickCategory} />
-        <CardContainer characterArray = {this.state.character}/>
-       
+        { this.state[category] &&
+        <CardContainer category = {category} data = {this.state[category]} />
+        }
       </div>
     );
   }
