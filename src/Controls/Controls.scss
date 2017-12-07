@@ -1,5 +1,16 @@
+@import 'variable';
+
 button.compare-button {
   font-size: 15px;
   margin: 10px;
   padding: 10px 15px;
+}
+
+button.compare-button:hover{
+  background: $accent-color;
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
 }

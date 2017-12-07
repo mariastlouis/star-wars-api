@@ -12,12 +12,12 @@ const Controls = ({clickCategory}) => {
           People
         </button>
         <button 
-          className="compare-button character"
+          className="compare-button planet"
           onClick={ () => clickCategory('planet')}>
           Planets
         </button>
         <button 
-          className="compare-button character"
+          className="compare-button vehicle"
           onClick={ () => clickCategory('vehicle')}>
           Vehicles
         </button>

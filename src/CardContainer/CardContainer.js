@@ -1,27 +1,26 @@
 import React from 'react';
 import Card from '../Card/Card.js'
 import PropTypes from 'prop-types';
-import './CardContainer.scss';
+import './CardContainer.css';
 
 
 
 const CardContainer = ({characterArray}) => {
 
 
-
   return (
-    <div className = "cardContainer">
+    <div className = "card-container">
+      <div className = "card-holder">
       {
         characterArray.map((character, index) =>{
           return (
-
             <Card
             name = {character.name}
             data = {character.data} />
-            )
+            );
         })
       }
-      
+      </div>
     </div>
   )
 }
