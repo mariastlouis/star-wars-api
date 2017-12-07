@@ -10,11 +10,13 @@ class App extends Component {
     super ();
     this.state ={
       movieCrawl:[],
-      character: []
+      character: [],
+      vehicle: [],
+      category: 'character'
     }
     this.loadMovieArray.bind(this)
-     this.setRandomMovie.bind(this);
-     this.clickCategory = this.clickCategory.bind(this)
+    this.setRandomMovie.bind(this);
+    this.clickCategory = this.clickCategory.bind(this)
   }
   
 loadMovieArray() {
@@ -35,10 +37,13 @@ setRandomMovie() {
 clickCategory(category) {
   if (category === 'character') {
     this.getCharacter()
+    this.setState({category: 'character'})
   } else if (category === 'planet') {
-    console.log('planet data clicked')
+    this.setState({category: 'planet'})
+     this.getPlanet()
   } else if (category === 'vehicle') {
-    console.log('vehicle data clicked')
+    this.getVehicle()
+    this.setState({category: 'vehicle'})
   } else {
     console.log('error')
   }
@@ -46,15 +51,88 @@ clickCategory(category) {
 
 
 
-
 componentDidMount(){
   this.loadMovieArray()
   this.getCharacter()
+  this.getPlanet()
+ 
   }
+
+async getVehicle () {
+  const vehicleFetch = await fetch('https://swapi.co/api/vehicles/')
+  const vehicleData = await vehicleFetch.json()
+  const vehicle = await this.fetchVehicleData(vehicleData.results)
+  this.setState({vehicle})
+}
+
+fetchVehicleData(vehicleData) {
+  return vehicleData.map(vehicle =>{
+    return {
+      name: vehicle.name,
+      data: {
+        Model: vehicle.model,
+        Class: vehicle.vehicle_class,
+        Passengers: vehicle.passengers
+      }
+    }
+    })
+  
+}
+
+async getPlanet () {
+  const planetFetch = await fetch('https://swapi.co/api/planets/')
+  const planetData = await planetFetch.json();
+  const planet = await this.fetchPlanetData(planetData.results);
+  this.setState({planet})
+}
+
+fetchPlanetData(planetData) {
+  const unresolvedPromises = planetData.map(async(planet) =>{
+    const planetResidents = planet.residents;
+    const residentPromises = planetResidents.map(async(resident) =>{
+      const residentFetch = await fetch (resident);
+      const residentData = await residentFetch.json();
+      return residentData.name;
+    });
+    const residentNames = await Promise.all(residentPromises)
+    // const residentPromises = await planet.residents.map(resident =>{
+    //   return {
+    //     resident
+    //   }
+    // })
+    
+
+    return {
+      name: planet.name,
+      data: {
+        Climate: planet.climate,
+        Population: planet.population,
+        Residents: residentNames
+        
+      }
+
+    }
+
+  })
+  return Promise.all(unresolvedPromises);
+}
+
+
+
+// async fetchPlanetResidents(planetData) {
+//   debugger;
+  // let unresolvedResidentPromises = residentArray.map(async(resident) =>{
+  //   let residentFetch = await fetch (resident.name)
+  //   let residentData = await residentFetch.json()
+  //   return residentData.name
+  // })
+  // return Promise.all(unresolvedResidentPromises)
+// }
 
 async getCharacter () {
 const peoplelFetch = await fetch('https://swapi.co/api/people/')
     const peopleData  = await peoplelFetch.json()
+    
     const character = await this.fetchPlanetSpecies(peopleData.results);
     this.setState({character})
 }
@@ -82,8 +160,10 @@ fetchPlanetSpecies(peopleData) {
 
 
 
+
   
   render() {
+    const {category, film} = this.state;
     return (
       <div className="App">
       <div className = "header">
@@ -94,8 +174,9 @@ fetchPlanetSpecies(peopleData) {
         <QuoteScroll movie = {this.setRandomMovie()}/>
       }
         <Controls clickCategory = {this.clickCategory} />
-        <CardContainer characterArray = {this.state.character}/>
-       
+        { this.state[category] &&
+        <CardContainer category = {category} data = {this.state[category]} />
+        }
       </div>
     );
   }

@@ -2,7 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types';
 import './Controls.css'
 
-export default class Controsl extends React.Component {
+
+
+export default class Controls extends React.Component {
 // const Controls = ({clickCategory}) => {
 constructor () {
   super ();
@@ -31,7 +33,10 @@ toggle(position) {
   }
 
 
+
+
 render(){
+
   return (
     <div className = "controls">
        <button 

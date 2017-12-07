@@ -4,20 +4,18 @@ import PropTypes from 'prop-types';
 import './CardContainer.css';
 
 
-
-const CardContainer = ({characterArray}) => {
-
+const CardContainer = ({data}) => {
 
   return (
     <div className = "card-container">
       <div className = "card-holder">
       {
-        characterArray.map((character, index) =>{
+        data.map((stat, index) =>{
           return (
             <Card
             key = {index}
-            name = {character.name}
-            data = {character.data} />
+            name = {stat.name}
+            data = {stat.data} />
             );
         })
       }
