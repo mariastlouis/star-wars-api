@@ -4,9 +4,7 @@ import PropTypes from 'prop-types';
 import './CardContainer.css';
 
 
-
 const CardContainer = ({data}) => {
-
 
   return (
     <div className = "card-container">

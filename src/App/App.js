@@ -40,6 +40,7 @@ clickCategory(category) {
     this.setState({category: 'character'})
   } else if (category === 'planet') {
     this.setState({category: 'planet'})
+     this.getPlanet()
   } else if (category === 'vehicle') {
     this.getVehicle()
     this.setState({category: 'vehicle'})
@@ -48,20 +49,12 @@ clickCategory(category) {
   }
 }
 
-getDataArray() {
-  if (this.state.character) {
-    return this.state.character
-  } else {
-  return this.state.vehicle 
-  } return this.getDataArray;
-  console.log('data array hooked up')
-  debugger;
-}
 
 
 componentDidMount(){
   this.loadMovieArray()
   this.getCharacter()
+ 
   }
 
 async getVehicle () {
@@ -85,9 +78,30 @@ fetchVehicleData(vehicleData) {
   
 }
 
+async getPlanet () {
+  const planetFetch = await fetch('https://swapi.co/api/planets/')
+  const planetData = await planetFetch.json();
+  const planet = await this.fetchPlanetData(planetData.results);
+  this.setState({planet})
+}
+
+fetchPlanetData(planetData) {
+  const unresolvedPromises = planetData.map(async(planet) =>{
+    return {
+      name: planet.name,
+      data: {
+        Climate: planet.climate,
+        Population: planet.population
+      }
+    }
+  })
+  return Promise.all(unresolvedPromises)
+}
+
 async getCharacter () {
 const peoplelFetch = await fetch('https://swapi.co/api/people/')
     const peopleData  = await peoplelFetch.json()
+    
     const character = await this.fetchPlanetSpecies(peopleData.results);
     this.setState({character})
 }
