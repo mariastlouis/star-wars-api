@@ -12,6 +12,7 @@ class App extends Component {
       movieCrawl:[],
       character: [],
       vehicle: [],
+      planet: [],
       category: 'character'
     }
     this.loadMovieArray.bind(this)
@@ -54,8 +55,7 @@ clickCategory(category) {
 componentDidMount(){
   this.loadMovieArray()
   this.getCharacter()
-  this.getPlanet()
- 
+
   }
 
 async getVehicle () {
@@ -95,12 +95,6 @@ fetchPlanetData(planetData) {
       return residentData.name;
     });
     const residentNames = await Promise.all(residentPromises)
-    // const residentPromises = await planet.residents.map(resident =>{
-    //   return {
-    //     resident
-    //   }
-    // })
-    
 
     return {
       name: planet.name,
@@ -117,17 +111,6 @@ fetchPlanetData(planetData) {
   return Promise.all(unresolvedPromises);
 }
 
-
-
-// async fetchPlanetResidents(planetData) {
-//   debugger;
-  // let unresolvedResidentPromises = residentArray.map(async(resident) =>{
-  //   let residentFetch = await fetch (resident.name)
-  //   let residentData = await residentFetch.json()
-  //   return residentData.name
-  // })
-  // return Promise.all(unresolvedResidentPromises)
-// }
 
 async getCharacter () {
 const peoplelFetch = await fetch('https://swapi.co/api/people/')
@@ -157,8 +140,6 @@ fetchPlanetSpecies(peopleData) {
 
     return Promise.all(unresolvedPromises)
   }
-
-
 
 
   
