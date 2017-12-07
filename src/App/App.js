@@ -68,7 +68,7 @@ async getVehicle () {
   const vehicleFetch = await fetch('https://swapi.co/api/vehicles/')
   const vehicleData = await vehicleFetch.json()
   const vehicle = await this.fetchVehicleData(vehicleData.results)
-  this.setState({character: [], vehicle: vehicle})
+  this.setState({vehicle})
 }
 
 fetchVehicleData(vehicleData) {
@@ -89,7 +89,7 @@ async getCharacter () {
 const peoplelFetch = await fetch('https://swapi.co/api/people/')
     const peopleData  = await peoplelFetch.json()
     const character = await this.fetchPlanetSpecies(peopleData.results);
-    this.setState({character: character, vehicle: []})
+    this.setState({character})
 }
 
 fetchPlanetSpecies(peopleData) {
