@@ -3,6 +3,7 @@ import './App.css';
 import Controls from '../Controls/Controls.js'
 import QuoteScroll from '../QuoteScroll/QuoteScroll.js'
 import fetchMovieCrawl from '../helper.js'
+import CardContainer from '../CardContainer/CardContainer.js'
 
 class App extends Component {
   constructor () {
@@ -12,7 +13,8 @@ class App extends Component {
       character: []
     }
     this.loadMovieArray.bind(this)
-     this.setRandomMovie = this.setRandomMovie.bind(this);
+     this.setRandomMovie.bind(this);
+     this.clickCategory = this.clickCategory.bind(this)
   }
   
 loadMovieArray() {
@@ -30,42 +32,55 @@ setRandomMovie() {
     return this.setRandomMovie;
   }
 
+clickCategory(category) {
+  if (category === 'character') {
+    this.getCharacter()
+  } else if (category === 'planet') {
+    console.log('planet data clicked')
+  } else if (category === 'vehicle') {
+    console.log('vehicle data clicked')
+  } else {
+    console.log('error')
+  }
+}
 
-  // componentDidMount() {
-  //   fetch('http://localhost:3001/api/frontend-staff')
-  //     .then(response => response.json())
-  //     .then(({bio}) => this.fetchBio(bio))
-  //     .then(staff => this.setState({staff}))
-  // }
 
-  // fetchBio(arrayOfStaff) {
-  //   const unresolvedPromises = arrayOfStaff.map(staffMember => {
-  //     return fetch(staffMember.info).then(response => response.json())
-  //             .then(staffBio => Object.assign({}, {name: staffMember.name}, staffBio))
-  //   })
-  //   return Promise.all(unresolvedPromises)
-  // }
+
 
 componentDidMount(){
   this.loadMovieArray()
-  fetch('https://swapi.co/api/people/')
-  .then(response => response.json())
-  .then(arrayOfCharacters => this.fetchCharacters(arrayOfCharacters.results)).then(character => {
+  this.getCharacter()
+  }
+
+async getCharacter () {
+const peoplelFetch = await fetch('https://swapi.co/api/people/')
+    const peopleData  = await peoplelFetch.json()
+    const character = await this.fetchPlanetSpecies(peopleData.results);
     this.setState({character})
-  })
 }
 
-fetchCharacters(arrayOfCharacters) {
-  const unresolvedPromises = arrayOfCharacters.map(character =>{
-    return fetch (character.homeworld).then(response => response.json())
-    .then(homeworld =>{
-     return Object.assign({}, {name: character.name}, {homeworld: homeworld.name}, {population: homeworld.population})
-    
-    })
-  })
-  return Promise.all(unresolvedPromises)
- 
-}
+fetchPlanetSpecies(peopleData) {
+    const unresolvedPromises = peopleData.map(async(character) => {
+      let homeworldFetch = await fetch(character.homeworld)
+      let homeworldData = await homeworldFetch.json()
+      let speciesFetch = await fetch(character.species)
+      let speciesData = await speciesFetch.json()
+
+      return {
+        name: character.name,
+        data: {
+          Species: speciesData.name,
+          Language: speciesData.language,
+          Homeworld: homeworldData.name,
+          Population: homeworldData.population,
+        }
+      }
+    });
+
+    return Promise.all(unresolvedPromises)
+  }
+
+
 
   
   render() {
@@ -78,7 +93,9 @@ fetchCharacters(arrayOfCharacters) {
         this.state.movieCrawl.length !== 0 &&
         <QuoteScroll movie = {this.setRandomMovie()}/>
       }
-        <Controls />
+        <Controls clickCategory = {this.clickCategory} />
+        <CardContainer characterArray = {this.state.character}/>
+       
       </div>
     );
   }
