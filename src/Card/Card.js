@@ -4,17 +4,17 @@ import './Card.css';
 import emptyStar from '../images/fav-star-empty.png';
 import fullStar from '../images/fav-star-full.png';
 
-const Card = ({name, data, favorite, category, addFavorite}) => {
+const Card = ({name, info, favorite, category, addFavorite}) => {
 
   const favoriteStar = favorite ? 
     <img src = { fullStar } alt = "favorite" /> :
     <img src = { emptyStar } alt = "not favorite" />;
 
 
-  const dataKeys = Object.keys(data);
+  const dataKeys = Object.keys(info);
   const dataRows = dataKeys.map((key, index) => {
     return <li key = {index}> <span className="accent">
-      {`${key}:`}</span>{` ${data[key]}`} </li>;
+      {`${key}:`}</span>{` ${info[key]}`} </li>;
 
   });
 

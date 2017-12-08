@@ -101,7 +101,7 @@ class App extends Component {
         
         { this.state[category] &&
           <CardContainer category = {category} 
-            data = {this.state[category]} 
+            info = {this.state[category]} 
             addFavorite = {this.addFavorite}  />
         }
       </div>
