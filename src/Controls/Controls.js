@@ -3,9 +3,8 @@ import PropTypes from 'prop-types';
 import './Controls.css'
 
 
-
 export default class Controls extends React.Component {
-// const Controls = ({clickCategory}) => {
+
 constructor () {
   super ();
   this.state = {active: 0}
@@ -13,7 +12,10 @@ constructor () {
 
 }
 
+
+
 passClickInfo (category, position) {
+
   this.props.clickCategory(category);
   this.toggle(position);
 }
@@ -33,10 +35,8 @@ toggle(position) {
   }
 
 
-
-
 render(){
-
+  const favoriteNumber = this.props.favorites.length
   return (
     <div className = "controls">
        <button 
@@ -56,6 +56,12 @@ render(){
           className="compare-button vehicle"
           onClick={ () => this.passClickInfo('vehicle', 2)}>
           Vehicles
+        </button>
+        <button
+          style = {{backgroundColor: this.bgColor(3)}}
+          className="compare-button favorite"
+          onClick={ () => this.passClickInfo('favorite', 3)}>
+          Favorites: {favoriteNumber}
         </button>
 
 

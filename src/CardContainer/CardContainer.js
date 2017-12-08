@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import './CardContainer.css';
 
 
-const CardContainer = ({data}) => {
+const CardContainer = ({data, addFavorite, category}) => {
 
   return (
     <div className = "card-container">
@@ -15,7 +15,10 @@ const CardContainer = ({data}) => {
             <Card
             key = {index}
             name = {stat.name}
-            data = {stat.data} />
+            data = {stat.data}
+            favorite = {stat.favorite} 
+            addFavorite = {addFavorite}
+            category = {category} />
             );
         })
       }
