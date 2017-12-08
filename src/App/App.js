@@ -74,7 +74,7 @@ class App extends Component {
   addFavorite(name, category){
      
     const findCategory = this.state[category];
-    const findFavorite = findCategory.find(data => data.name === name);
+    const findFavorite = findCategory.find(info => info.name === name);
     findFavorite.favorite = !findFavorite.favorite;
      
     const newFavorite = findFavorite.favorite ?

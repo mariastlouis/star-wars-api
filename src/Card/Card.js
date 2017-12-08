@@ -39,3 +39,12 @@ const Card = ({name, info, favorite, category, addFavorite}) => {
 };
 
 export default Card;
+
+Card.propTypes = {
+  name: PropTypes.string,
+  info: PropTypes.object,
+  favorite: PropTypes.bool,
+  category: PropTypes.string,
+  addFavorite: PropTypes.func
+
+};
