@@ -1,15 +1,11 @@
 @import 'variable';
 
-
-
 .card-head {
-  align-items: center;
-  background: $accent-color;
-  color: white;
   display: flex;
   height: 75px;
-  justify-content: center;
+  justify-content: space-between;
   text-align: center;
+  padding-right: 10px;
 }
 .card-head h2 {
   font-size: 20px;
@@ -41,3 +37,13 @@ li {
 .accent {
   font-weight: 500%
 }
+
+.fav {
+  height: 50px;
+  width: 50px;
+  // background-image: url("../images/fav-star-empty.png");
+  // background-repeat: no-repeat;
+}
+
+
+

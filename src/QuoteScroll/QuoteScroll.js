@@ -1,6 +1,6 @@
-import React from 'react'
+import React from 'react';
 import PropTypes from 'prop-types';
-import './QuoteScroll.css'
+import './QuoteScroll.css';
 
 
 const QuoteScroll = ({movie}) => {
@@ -9,15 +9,15 @@ const QuoteScroll = ({movie}) => {
       <div className = "fade">
       </div>
       <div className = "star-wars-quote">
-        <div class = "crawl">
-          <div class = "title">
+        <div className = "crawl">
+          <div className = "title">
             <h1>{movie.title}</h1>
           </div>
-            {movie.openingCrawl}
+          {movie.openingCrawl}
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default QuoteScroll;
