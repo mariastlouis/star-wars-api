@@ -5,6 +5,8 @@ import QuoteScroll from '../QuoteScroll/QuoteScroll.js';
 import  { fetchMovieCrawl, getVehicle, getPlanet, getCharacter }
   from '../helper.js';
 
+import swapilogo from '../images/swapi-logo.png';
+import loading from '../images/loading-background.png';
 import CardContainer from '../CardContainer/CardContainer.js';
 
 class App extends Component {
@@ -74,7 +76,7 @@ class App extends Component {
   addFavorite(name, category){
      
     const findCategory = this.state[category];
-    const findFavorite = findCategory.find(data => data.name === name);
+    const findFavorite = findCategory.find(info => info.name === name);
     findFavorite.favorite = !findFavorite.favorite;
      
     const newFavorite = findFavorite.favorite ?
@@ -90,18 +92,19 @@ class App extends Component {
     return (
       <div className="App">
         <div className = "header">
-          <h1> Star Wars Data </h1>
-        </div>
-        {
-          this.state.movieCrawl.length !== 0 &&
-        <QuoteScroll movie = {this.setRandomMovie()}/>
+          <img src = {swapilogo} className = 'logo' alt = 'logo' />
+        </div>   
+         {
+            this.state.movieCrawl.length !== 0 && this.state.character.length ?
+             <QuoteScroll movie = {this.setRandomMovie()}/>  :
+             <img src = {loading } />
         }
         <Controls clickCategory = {this.clickCategory}
           favorites = {this.state.favorite} />
         
         { this.state[category] &&
           <CardContainer category = {category} 
-            data = {this.state[category]} 
+            info = {this.state[category]} 
             addFavorite = {this.addFavorite}  />
         }
       </div>

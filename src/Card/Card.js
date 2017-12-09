@@ -4,26 +4,27 @@ import './Card.css';
 import emptyStar from '../images/fav-star-empty.png';
 import fullStar from '../images/fav-star-full.png';
 
-const Card = ({name, data, favorite, category, addFavorite}) => {
+const Card = ({name, info, favorite, category, addFavorite}) => {
 
   const favoriteStar = favorite ? 
-    <img src = { fullStar } alt = "favorite" /> :
-    <img src = { emptyStar } alt = "not favorite" />;
+    <img src = { fullStar } className = "favorite-star" alt = "favorite" /> :
+    <img src = { emptyStar } className = "favorite-star" alt = "not favorite" />;
 
 
-  const dataKeys = Object.keys(data);
+  const dataKeys = Object.keys(info);
   const dataRows = dataKeys.map((key, index) => {
     return <li key = {index}> <span className="accent">
-      {`${key}:`}</span>{` ${data[key]}`} </li>;
+      {`${key}:`}</span>{` ${info[key]}`} </li>;
 
   });
 
   return (
     <div className = "card">
       <div className = "card-head">
-        <div className = "head">
+        <div className = "item-name"> 
           <h2> {name} </h2>
         </div>
+       
         <div className = "fav"
           onClick={ () => addFavorite(name, category)}>
           {favoriteStar}
@@ -34,8 +35,19 @@ const Card = ({name, data, favorite, category, addFavorite}) => {
           {dataRows}
         </ul>
       </div>
+      <div className = "card-footer">
+      </div>
     </div>
   );
 };
 
 export default Card;
+
+Card.propTypes = {
+  name: PropTypes.string,
+  info: PropTypes.object,
+  favorite: PropTypes.bool,
+  category: PropTypes.string,
+  addFavorite: PropTypes.func
+
+};

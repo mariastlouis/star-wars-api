@@ -1,1 +1,16 @@
 @import 'variable';
+
+.App {
+  background-image: url("../images/star-wars-background.jpeg");
+  background-size: cover; 
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+}
+
+.app-bottom {
+  background-color: #000024;
+  height: 200px;
+}

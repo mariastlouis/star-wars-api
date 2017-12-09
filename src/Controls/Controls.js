@@ -64,3 +64,8 @@ export default class Controls extends React.Component {
   }
 }
 
+Controls.propTypes = {
+  clickCategory: PropTypes.func,
+  favorites: PropTypes.array
+};
+

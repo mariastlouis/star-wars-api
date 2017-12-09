@@ -21,3 +21,7 @@ const QuoteScroll = ({movie}) => {
 };
 
 export default QuoteScroll;
+
+QuoteScroll.propTypes = {
+  movie: PropTypes.object
+};

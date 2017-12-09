@@ -26,7 +26,7 @@ const fetchVehicleData = (vehicleData) => {
     return {
       name: vehicle.name,
       favorite: false,
-      data: {
+      info: {
         Model: vehicle.model,
         Class: vehicle.vehicle_class,
         Passengers: vehicle.passengers
@@ -54,7 +54,7 @@ const fetchPlanetData = (planetData) => {
     return {
       name: planet.name,
       favorite: false,
-      data: {
+      info: {
         Climate: planet.climate,
         Population: planet.population,
         Residents: residentNames
@@ -82,7 +82,7 @@ const fetchPlanetSpecies = (peopleData) => {
     return {
       name: character.name,
       favorite: false,
-      data: {
+      info: {
         Species: speciesData.name,
         Language: speciesData.language,
         Homeworld: homeworldData.name,

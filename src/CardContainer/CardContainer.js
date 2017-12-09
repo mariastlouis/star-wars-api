@@ -4,18 +4,18 @@ import PropTypes from 'prop-types';
 import './CardContainer.css';
 
 
-const CardContainer = ({data, addFavorite, category}) => {
+const CardContainer = ({info, addFavorite, category}) => {
 
   return (
     <div className = "card-container">
       <div className = "card-holder">
         {
-          data.map((stat, index) =>{
+          info.map((stat, index) =>{
             return (
               <Card
                 key = {index}
                 name = {stat.name}
-                data = {stat.data}
+                info = {stat.info}
                 favorite = {stat.favorite} 
                 addFavorite = {addFavorite}
                 category = {category} />
@@ -28,3 +28,9 @@ const CardContainer = ({data, addFavorite, category}) => {
 };
 
 export default CardContainer;
+
+CardContainer.propTypes = {
+  info: PropTypes.array,
+  category: PropTypes.string,
+  addFavorite: PropTypes.func
+};
