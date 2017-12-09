@@ -6,9 +6,7 @@ import  { fetchMovieCrawl, getVehicle, getPlanet, getCharacter }
   from '../helper.js';
 
 import swapilogo from '../images/swapi-logo.png';
-import loading from '../images/loading-background.png'
-
-
+import loading from '../images/loading-background.png';
 import CardContainer from '../CardContainer/CardContainer.js';
 
 class App extends Component {
@@ -95,8 +93,7 @@ class App extends Component {
       <div className="App">
         <div className = "header">
           <img src = {swapilogo} className = 'logo' alt = 'logo' />
-        </div>
-         
+        </div>   
          {
             this.state.movieCrawl.length !== 0 && this.state.character.length ?
              <QuoteScroll movie = {this.setRandomMovie()}/>  :
