@@ -22,3 +22,7 @@ h2 {
 .header {
   display: flex;
   justify-content: center; }
+
+.app-bottom {
+  background-color: #000024;
+  height: 200px; }
