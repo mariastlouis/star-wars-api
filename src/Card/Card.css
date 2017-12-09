@@ -16,22 +16,31 @@ h2 {
   -webkit-margin-end: 0px; }
 
 .card-head {
+  display: -ms-flexbox;
   display: flex;
-  height: 75px;
+  height: 20px;
+  padding: 10px;
+  -ms-flex-pack: justify;
   justify-content: space-between;
-  text-align: center;
   padding-right: 10px; }
 
-.card-head h2 {
+.item-name h2 {
+  margin: 0 20px;
+  color: #feda4a;
   font-size: 20px;
-  margin: 0 20px; }
+  font-size: 20px; }
+
+.item-name {
+  display: flex;
+  justify-content: center; }
 
 .card {
-  background: #ffffff;
-  box-shadow: 1.5px 3px 3px 1.5px #566782;
-  margin: 10px;
+  margin: 5px;
+  border: 1px solid #feda4a;
   width: 230px;
-  color: black; }
+  display: flex;
+  flex-direction: column;
+  background-color: #000024; }
 
 .card-body {
   padding: 20px; }
@@ -41,18 +50,10 @@ ul.card-data {
   margin: 0 0 10px 35px;
   padding: 0; }
 
-li {
-  color: black; }
+.favorite-star {
+  width: 30px; }
 
-.accent {
-  font-weight: 500%; }
-
-.fav {
-  height: 50px;
-  width: 50px;
-  background-image: url("../images/fav-star-empty.png");
-  background-repeat: no-repeat; }
-
-.fav:hover {
-  background-image: url("../images/fav-star-full.png");
-  background-repeat: no-repeat; }
+.card-footer {
+  display: flex;
+  align-self: flex-end;
+  justify-content: space-between; }

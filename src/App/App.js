@@ -5,6 +5,9 @@ import QuoteScroll from '../QuoteScroll/QuoteScroll.js';
 import  { fetchMovieCrawl, getVehicle, getPlanet, getCharacter }
   from '../helper.js';
 
+import swapilogo from '../images/swapi-logo.png';
+
+
 import CardContainer from '../CardContainer/CardContainer.js';
 
 class App extends Component {
@@ -90,7 +93,7 @@ class App extends Component {
     return (
       <div className="App">
         <div className = "header">
-          <h1> Star Wars Data </h1>
+          <img src = {swapilogo} className = 'logo' alt = 'logo' />
         </div>
         {
           this.state.movieCrawl.length !== 0 &&

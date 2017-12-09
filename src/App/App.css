@@ -14,3 +14,11 @@ h2 {
   -webkit-margin-after: 0;
   -webkit-margin-start: 0px;
   -webkit-margin-end: 0px; }
+
+.App {
+  background-image: url("../images/star-wars-background.jpeg");
+  background-size: cover; }
+
+.header {
+  display: flex;
+  justify-content: center; }

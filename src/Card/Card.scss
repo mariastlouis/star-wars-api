@@ -1,23 +1,33 @@
 @import 'variable';
 
 .card-head {
-  display: flex;
-  height: 75px;
-  justify-content: space-between;
-  text-align: center;
-  padding-right: 10px;
+    display: -ms-flexbox;
+    display: flex;
+    height: 20px;
+    padding: 10px;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    padding-right: 10px;
 }
-.card-head h2 {
-  font-size: 20px;
+
+.item-name h2 {
   margin: 0 20px;
+  color: $accent-color;
+  font-size: 20px;
+  font-size: 20px;
+}
+.item-name {
+    display: flex;
+    justify-content: center;
 }
 
 .card {
-  background: #ffffff;
-  box-shadow: 1.5px 3px 3px 1.5px #566782;
-  margin: 10px;
-  width: 230px;
-  color: black;
+    margin: 5px;
+    border: 1px solid $accent-color;
+    width: 230px;
+    display: flex;
+    flex-direction: column;
+    background-color: #000024
 }
 
 .card-body {
@@ -30,20 +40,13 @@ ul.card-data {
   padding: 0;
 }
 
-li {
-  color: black;
+
+.favorite-star {
+  width: 30px;
 }
 
-.accent {
-  font-weight: 500%
+.card-footer {
+  display: flex;
+  align-self: flex-end;
+  justify-content: space-between;
 }
-
-.fav {
-  height: 50px;
-  width: 50px;
-  // background-image: url("../images/fav-star-empty.png");
-  // background-repeat: no-repeat;
-}
-
-
-

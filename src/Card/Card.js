@@ -7,8 +7,8 @@ import fullStar from '../images/fav-star-full.png';
 const Card = ({name, info, favorite, category, addFavorite}) => {
 
   const favoriteStar = favorite ? 
-    <img src = { fullStar } alt = "favorite" /> :
-    <img src = { emptyStar } alt = "not favorite" />;
+    <img src = { fullStar } className = "favorite-star" alt = "favorite" /> :
+    <img src = { emptyStar } className = "favorite-star" alt = "not favorite" />;
 
 
   const dataKeys = Object.keys(info);
@@ -21,9 +21,10 @@ const Card = ({name, info, favorite, category, addFavorite}) => {
   return (
     <div className = "card">
       <div className = "card-head">
-        <div className = "head">
+        <div className = "item-name"> 
           <h2> {name} </h2>
         </div>
+       
         <div className = "fav"
           onClick={ () => addFavorite(name, category)}>
           {favoriteStar}
@@ -33,6 +34,8 @@ const Card = ({name, info, favorite, category, addFavorite}) => {
         <ul className = "card-data">
           {dataRows}
         </ul>
+      </div>
+      <div className = "card-footer">
       </div>
     </div>
   );
