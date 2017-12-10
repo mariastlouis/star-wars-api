@@ -43,46 +43,26 @@ ShallowWrapper {
     "props": Object {
       "children": Array [
         <button
-          className="compare-button character"
+          className="compare-button character active"
           onClick={[Function]}
-          style={
-                    Object {
-                              "backgroundColor": "#feda4a",
-                            }
-          }
 >
           People
 </button>,
         <button
-          className="compare-button planet"
+          className="compare-button planet "
           onClick={[Function]}
-          style={
-                    Object {
-                              "backgroundColor": "",
-                            }
-          }
 >
           Planets
 </button>,
         <button
-          className="compare-button vehicle"
+          className="compare-button vehicle "
           onClick={[Function]}
-          style={
-                    Object {
-                              "backgroundColor": "",
-                            }
-          }
 >
           Vehicles
 </button>,
         <button
           className="compare-button favorite"
           onClick={[Function]}
-          style={
-                    Object {
-                              "backgroundColor": "",
-                            }
-          }
 >
           Favorites: 
           2
@@ -98,11 +78,8 @@ ShallowWrapper {
         "nodeType": "host",
         "props": Object {
           "children": "People",
-          "className": "compare-button character",
+          "className": "compare-button character active",
           "onClick": [Function],
-          "style": Object {
-            "backgroundColor": "#feda4a",
-          },
         },
         "ref": null,
         "rendered": "People",
@@ -114,11 +91,8 @@ ShallowWrapper {
         "nodeType": "host",
         "props": Object {
           "children": "Planets",
-          "className": "compare-button planet",
+          "className": "compare-button planet ",
           "onClick": [Function],
-          "style": Object {
-            "backgroundColor": "",
-          },
         },
         "ref": null,
         "rendered": "Planets",
@@ -130,11 +104,8 @@ ShallowWrapper {
         "nodeType": "host",
         "props": Object {
           "children": "Vehicles",
-          "className": "compare-button vehicle",
+          "className": "compare-button vehicle ",
           "onClick": [Function],
-          "style": Object {
-            "backgroundColor": "",
-          },
         },
         "ref": null,
         "rendered": "Vehicles",
@@ -151,9 +122,6 @@ ShallowWrapper {
           ],
           "className": "compare-button favorite",
           "onClick": [Function],
-          "style": Object {
-            "backgroundColor": "",
-          },
         },
         "ref": null,
         "rendered": Array [
@@ -173,46 +141,26 @@ ShallowWrapper {
       "props": Object {
         "children": Array [
           <button
-            className="compare-button character"
+            className="compare-button character active"
             onClick={[Function]}
-            style={
-                        Object {
-                                    "backgroundColor": "#feda4a",
-                                  }
-            }
 >
             People
 </button>,
           <button
-            className="compare-button planet"
+            className="compare-button planet "
             onClick={[Function]}
-            style={
-                        Object {
-                                    "backgroundColor": "",
-                                  }
-            }
 >
             Planets
 </button>,
           <button
-            className="compare-button vehicle"
+            className="compare-button vehicle "
             onClick={[Function]}
-            style={
-                        Object {
-                                    "backgroundColor": "",
-                                  }
-            }
 >
             Vehicles
 </button>,
           <button
             className="compare-button favorite"
             onClick={[Function]}
-            style={
-                        Object {
-                                    "backgroundColor": "",
-                                  }
-            }
 >
             Favorites: 
             2
@@ -228,11 +176,8 @@ ShallowWrapper {
           "nodeType": "host",
           "props": Object {
             "children": "People",
-            "className": "compare-button character",
+            "className": "compare-button character active",
             "onClick": [Function],
-            "style": Object {
-              "backgroundColor": "#feda4a",
-            },
           },
           "ref": null,
           "rendered": "People",
@@ -244,11 +189,8 @@ ShallowWrapper {
           "nodeType": "host",
           "props": Object {
             "children": "Planets",
-            "className": "compare-button planet",
+            "className": "compare-button planet ",
             "onClick": [Function],
-            "style": Object {
-              "backgroundColor": "",
-            },
           },
           "ref": null,
           "rendered": "Planets",
@@ -260,11 +202,8 @@ ShallowWrapper {
           "nodeType": "host",
           "props": Object {
             "children": "Vehicles",
-            "className": "compare-button vehicle",
+            "className": "compare-button vehicle ",
             "onClick": [Function],
-            "style": Object {
-              "backgroundColor": "",
-            },
           },
           "ref": null,
           "rendered": "Vehicles",
@@ -281,9 +220,6 @@ ShallowWrapper {
             ],
             "className": "compare-button favorite",
             "onClick": [Function],
-            "style": Object {
-              "backgroundColor": "",
-            },
           },
           "ref": null,
           "rendered": Array [

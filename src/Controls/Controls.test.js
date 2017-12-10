@@ -61,6 +61,16 @@ describe('Controls', () =>{
     expect(wrapper.find('.favorite').text()).toEqual('Favorites: 2')
   })
 
+ 
+  it('should give the buttons a class of active when clicked', () =>{
+   expect(wrapper.find('.character').hasClass('active')).toEqual(true)
+    expect(wrapper.find('.planet').hasClass('active')).toEqual(false)
+    wrapper.find('.planet').simulate('click');
+    expect(wrapper.find('.character').hasClass('active')).toEqual(false)
+     expect(wrapper.find('.planet').hasClass('active')).toEqual(true)
+  });
+
+
 
 
 });
