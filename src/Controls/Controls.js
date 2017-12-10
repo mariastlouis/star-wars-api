@@ -24,12 +24,7 @@ export default class Controls extends React.Component {
     }
   }
 
-  bgColor(position) {
-    if (this.state.active === position) {
-      return "#feda4a";
-    } return "";
-  }
-
+ 
   getActive(position) {
     if(this.state.active === position) {
       return 'active'
@@ -43,26 +38,21 @@ export default class Controls extends React.Component {
     return (
       <div className = "controls">
         <button 
-          // style = {{backgroundColor: this.bgColor(0)}}
           className={`compare-button character ${this.getActive(0)}`}
           onClick={ () => this.passClickInfo('character', 0)}>
             People
         </button>
         <button
-          style = {{backgroundColor: this.bgColor(1)}} 
           className={`compare-button planet ${this.getActive(1)}`}
           onClick={ () => this.passClickInfo('planet', 1)}>
             Planets
         </button>
         <button
-          style = {{backgroundColor: this.bgColor(2)}}
-          // className="compare-button vehicle"
           className={`compare-button vehicle ${this.getActive(2)}`}
           onClick={ () => this.passClickInfo('vehicle', 2)}>
             Vehicles
         </button>
         <button
-          style = {{backgroundColor: this.bgColor(3)}}
           className="compare-button favorite"
           onClick={ () => this.passClickInfo('favorite', 3)}>
             Favorites: {favoriteNumber}
