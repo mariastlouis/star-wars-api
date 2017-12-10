@@ -14,3 +14,7 @@ button.compare-button:hover{
   display: flex;
   justify-content: center;
 }
+
+.active {
+  background: $accent-color;
+}
