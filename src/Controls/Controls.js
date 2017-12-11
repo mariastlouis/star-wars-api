@@ -26,9 +26,9 @@ export default class Controls extends React.Component {
 
  
   getActive(position) {
-    if(this.state.active === position) {
-      return 'active'
-    } return ''
+    if (this.state.active === position) {
+      return 'active';
+    } return '';
   }
 
  
