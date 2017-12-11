@@ -40,7 +40,8 @@ h2 {
   width: 230px;
   display: flex;
   flex-direction: column;
-  background-color: #000024; }
+  background-color: #000024;
+  font-size: 15px; }
 
 .card-body {
   padding: 20px; }
@@ -50,6 +51,9 @@ ul.card-data {
   margin: 0 0 0 10px;
   padding: 0; }
 
+li {
+  font-size: 16px; }
+
 .favorite-star {
   width: 30px; }
 
@@ -57,3 +61,6 @@ ul.card-data {
   display: flex;
   align-self: flex-end;
   justify-content: space-between; }
+
+span.accent {
+  color: gray; }
