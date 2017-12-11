@@ -10,7 +10,23 @@
   justify-content: center;
 }
 
+.logo {
+  width: 40%;
+}
+
 .app-bottom {
   background-color: #000024;
   height: 200px;
+}
+
+@media screen and (max-width: 1000px) {
+  .logo {
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .logo {
+    width: 90%;
+  }
 }

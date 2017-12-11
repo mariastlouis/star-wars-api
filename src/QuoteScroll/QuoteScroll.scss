@@ -2,8 +2,10 @@
 
 .quoteScroll {
   width: 100%;
-  height: 100%;
+  // height: 100%;
+  height: 0;
   overflow: hidden;
+   animation: addHeight 16s linear;
 }
 
 .fade {
@@ -55,5 +57,14 @@
     100% { 
     top: -6000px;
     transform: rotateX(25deg) translateZ(-2500px);
+  }
+}
+
+@keyframes addHeight {
+  0% {
+    height: 200px;
+  }
+  100% {
+    height: 200px;
   }
 }
