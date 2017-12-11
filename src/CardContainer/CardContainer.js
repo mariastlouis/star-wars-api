@@ -5,10 +5,15 @@ import './CardContainer.css';
 
 
 const CardContainer = ({info, addFavorite, category}) => {
+  const favoriteMessage = category === 'favorite' && !info.length
+    ? 'No favorites selected. Choose one to display.' : '';
 
   return (
     <div className = "card-container">
       <div className = "card-holder">
+        <div className = "category">
+          <p>{favoriteMessage}</p>
+        </div>
         {
           info.map((stat, index) =>{
             return (
