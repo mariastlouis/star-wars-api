@@ -8,7 +8,8 @@ const Card = ({name, info, favorite, category, addFavorite}) => {
 
   const favoriteStar = favorite ? 
     <img src = { fullStar } className = "favorite-star" alt = "favorite" /> :
-    <img src = { emptyStar } className = "favorite-star" alt = "not favorite" />;
+    <img src = { emptyStar } className =
+      "favorite-star" alt = "not favorite" />;
 
 
   const dataKeys = Object.keys(info);

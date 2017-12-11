@@ -26,3 +26,6 @@ button.compare-button:hover {
 .controls {
   display: flex;
   justify-content: center; }
+
+.active {
+  background: #feda4a; }
