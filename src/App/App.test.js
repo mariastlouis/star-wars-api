@@ -2,13 +2,12 @@ import React from 'react';
 import App from './App.js';
 import { shallow} from 'enzyme';
 
-// jest.mock('../helper/helper.js');
 
 let renderedApp;
 
-const mockEvent = { preventDefault: jest.fn() }
+// const mockEvent = { preventDefault: jest.fn() }
 
-const mockCharacter = [
+const mockFavorite = [
   {
     name: 'Luke Skywalker',
     favorite: true,
@@ -18,14 +17,44 @@ const mockCharacter = [
       Population: 200000,
       Species: 'Human'
     }
+  },
+    {
+    name: 'Leia Organa',
+    favorite: true,
+    info: {
+      Homeworld: "Alderaan",
+      Language: "Galactic Basic",
+      Population: 200000000,
+      Species: 'Human'
+    }
   }
 ]
 
+const mockCharacter = [
+  {
+    name: 'C-3P0',
+    favorite: false,
+    info: {
+      Homeworld: "Tatooine",
+      Language: "N/A",
+      Population: 200000,
+      Species: 'Droid'
+    }
+  }
+]
 
-describe('App test', () =>{
+let originalTimeout;
+
+describe('App state test', () =>{
   beforeEach(() =>{
-    renderedApp = shallow(<App />, {disableLifecycleMethods: true});
+    renderedApp = shallow(<App /> ,{disableLifecycleMethods: true});
+    originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
+    jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000;
   });
+
+  afterEach(function() {
+      jasmine.DEFAULT_TIMEOUT_INTERVAL = originalTimeout;
+    });
   
   it('should render correctly', () =>{
     expect(renderedApp).toBeDefined();
@@ -37,7 +66,7 @@ describe('App test', () =>{
       .toEqual(true);
   });
 
-  it('should render with the correct default', () => {
+  it('should render with the correct default state', () => {
     const expectedState = {
       "category": "character",
       "character": null,
@@ -73,4 +102,23 @@ describe('App test', () =>{
 
   });
 
+  it('should have 2 favorites if 2 in favorite state', async() =>{
+    await renderedApp.update();
+    renderedApp.setState({favorite: mockFavorite});
+    expect(renderedApp.state('favorite').length).toEqual(2);
+  });
+
+  it('should have 3 favorites if another is added with addFavorite function', async() =>{
+    await renderedApp.update();
+
+    renderedApp.setState({favorite: mockFavorite, character: mockCharacter});
+    expect(renderedApp.state('favorite').length).toEqual(2);
+    await renderedApp.instance().addFavorite('C-3P0', 'character');
+ 
+    expect(renderedApp.state('favorite').length).toEqual(3);
+  });
+
 });
+
+
+
