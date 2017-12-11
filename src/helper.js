@@ -1,11 +1,11 @@
-const fetchMovieCrawl = async() =>{
+export const fetchMovieCrawl = async() =>{
   const movieFetch = await fetch('https://swapi.co/api/films/');
   const movieData = await movieFetch.json();
   return fetchMovieData(movieData.results);
 };
 
 const fetchMovieData = (movieArray) => {
-try{ 
+  try {
   return movieArray.map(movie => {
     return {
       title: movie.title,
@@ -15,18 +15,18 @@ try{
     };
   });
 } catch (type) {
-  return Error('Fetch failed')
+  return Error ('Fetch failed')
 }
 };
 
-const getVehicle = async() => {
+export const getVehicle = async() => {
   const vehicleFetch = await fetch('https://swapi.co/api/vehicles/');
   const vehicleData = await vehicleFetch.json();
   return fetchVehicleData(vehicleData.results);
 };
 
 const fetchVehicleData = (vehicleData) => {
-try {  
+  try{
   return vehicleData.map(vehicle =>{
     return {
       name: vehicle.name,
@@ -38,19 +38,19 @@ try {
       }
     };
   });
-} catch (type) {
-  return Error('Fetch failed')
-  }  
+} catch(type) {
+  return Error ('Fetch failed')
+}
 };
 
-const getPlanet = async () => {
+export const getPlanet = async () => {
   const planetFetch = await fetch('https://swapi.co/api/planets/');
   const planetData = await planetFetch.json();
   return fetchPlanetData(planetData.results);
 };
 
 const fetchPlanetData = (planetData) => {
-try {  
+  try {
   const unresolvedPromises = planetData.map(async(planet) =>{
     const planetResidents = planet.residents;
     const residentPromises = planetResidents.map(async(resident) =>{
@@ -73,19 +73,19 @@ try {
     };
   });
   return Promise.all(unresolvedPromises);
-} catch (type) {
-  return Error('Fetch failed')
-}  
+} catch(type) {
+  return Error ('Fetch failed')
+}
 };
 
-const getCharacter = async () => {
+export const getCharacter = async () => {
   const peoplelFetch = await fetch('https://swapi.co/api/people/');
   const peopleData  = await peoplelFetch.json();
   return fetchPlanetSpecies(peopleData.results);
 };
 
 const fetchPlanetSpecies = (peopleData) => {
-try {  
+  try {
   const unresolvedPromises = peopleData.map(async(character) => {
     let homeworldFetch = await fetch(character.homeworld);
     let homeworldData = await homeworldFetch.json();
@@ -104,10 +104,7 @@ try {
     };
   });
   return Promise.all(unresolvedPromises);
-} catch (type) {
-  return Error('Fetch failed')
-  }  
+} catch(type) {
+  return Error ('Fetch failed')
+}
 };
-
-
-export default { getCharacter, fetchMovieCrawl, getVehicle, getPlanet};
