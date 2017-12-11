@@ -18,3 +18,9 @@ button.compare-button:hover{
 .active {
   background: $accent-color;
 }
+
+@media screen and (max-width: 500px) {
+  .controls {
+    flex-direction: column;
+  }
+}

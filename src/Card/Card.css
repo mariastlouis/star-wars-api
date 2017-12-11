@@ -52,7 +52,8 @@ ul.card-data {
   padding: 0; }
 
 li {
-  font-size: 16px; }
+  font-size: 16px;
+  color: gray; }
 
 .favorite-star {
   width: 30px; }
@@ -63,4 +64,4 @@ li {
   justify-content: space-between; }
 
 span.accent {
-  color: gray; }
+  color: white; }
