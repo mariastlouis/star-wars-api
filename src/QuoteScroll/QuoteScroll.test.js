@@ -2,20 +2,20 @@ import React from 'react';
 import QuoteScroll from './QuoteScroll.js';
 import { shallow } from 'enzyme';
 
-const mockRandom = jest.fn();
+
 
 const mockFilm = {
   openingCrawl: "It is a period of civil war.",
   releaseDate: "1977-05-25",
   title: "A New Hope"
-}
+};
 
 let renderedQuote;
 
-describe('QuoteScroll' , () =>{
+describe('QuoteScroll', () =>{
   
   beforeEach(() =>{
-    renderedQuote = shallow(<QuoteScroll movie = {mockFilm} />)
+    renderedQuote = shallow(<QuoteScroll movie = {mockFilm} />);
   });
 
   it('should render correctly', () =>{
