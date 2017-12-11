@@ -45,10 +45,6 @@ describe('Controls', () =>{
     expect(wrapper.find('button').length).toEqual(4);
   });
 
-  it('should match the snapshot', () =>{
-    expect(wrapper).toMatchSnapshot();
-  });
-
   it('should call the click function if a button is pressed', () =>{
     expect(mockClickFunction.mock.calls.length).toEqual(0);
     wrapper.find('.planet').simulate('click');
@@ -65,12 +61,12 @@ describe('Controls', () =>{
   it('should give the buttons a class of active when clicked', () =>{
    expect(wrapper.find('.character').hasClass('active')).toEqual(true)
     expect(wrapper.find('.planet').hasClass('active')).toEqual(false)
+    
     wrapper.find('.planet').simulate('click');
+    
     expect(wrapper.find('.character').hasClass('active')).toEqual(false)
-     expect(wrapper.find('.planet').hasClass('active')).toEqual(true)
+    expect(wrapper.find('.planet').hasClass('active')).toEqual(true)
   });
-
-
 
 
 });

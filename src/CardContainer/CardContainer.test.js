@@ -48,10 +48,9 @@ it('should render correctly', () =>{
 
 it('should match the snapshot', () =>{
   expect(wrapper).toMatchSnapshot();
-  console.log(wrapper.debug())
 })
 
-it('should render the number of cards for the length of the array given', () =>{
+it('should render two cards if the length of the array passed in is two', () =>{
   expect(wrapper.find('Card').length).toEqual(2);
 })
 

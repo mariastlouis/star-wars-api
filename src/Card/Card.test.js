@@ -5,34 +5,34 @@ import {shallow} from 'enzyme';
 const mockAddFavorite = jest.fn();
 const mockInfo= 
   {
-   Species: 'Human',
+    Species: 'Human',
     Language: 'Galactic Basic',
     Homeworld: 'Tatooine',
     Population: 200000
-  }
+  };
 
-  const mockInfoThree = {
-    Class: 'wheeled',
-    Model: 'Digger Crawler',
-    Passengers: '30'
-  }
+const mockInfoThree = {
+  Class: 'wheeled',
+  Model: 'Digger Crawler',
+  Passengers: '30'
+};
 
-  let renderedCard;
+let renderedCard;
 
-  describe('Card', () =>{
-    beforeEach(() => {
-      renderedCard = shallow(
-        <Card 
-          name = 'Luke Skywalker'
-          info = {mockInfo}
-          favorite = {false}
-          addFavorite = {mockAddFavorite}
-        />);
-    });
+describe('Card', () =>{
+  beforeEach(() => {
+    renderedCard = shallow(
+      <Card 
+        name = 'Luke Skywalker'
+        info = {mockInfo}
+        favorite = {false}
+        addFavorite = {mockAddFavorite}
+      />);
+  });
 
-    it('should render corrrectly', () => {
-      expect(renderedCard).toBeDefined();
-    });
+  it('should render corrrectly', () => {
+    expect(renderedCard).toBeDefined();
+  });
 
   it('should have class of card head and fav an have an h2 element', () =>{
     expect(renderedCard.find('.card-head').length).toEqual(1);
@@ -44,10 +44,13 @@ const mockInfo=
     expect(renderedCard).toMatchSnapshot()
   });
 
-  it('should render an empty star image if the item is not a favorite', () =>{
-    expect(renderedCard.containsMatchingElement(<img src="fav-star-empty.png" className="favorite-star" alt="not favorite" />)).toEqual(true);
+  it('non favorites should be rendered with empty star', () =>{
+    expect(renderedCard.containsMatchingElement(
+      <img src="fav-star-empty.png" className="favorite-star" alt="not favorite" />))
+      .toEqual(true);
 
   });
+  
   it('should render a full star image if the item is a favorite', () =>{
     const renderedCard2 = shallow(
       <Card 
@@ -68,13 +71,13 @@ it ('should render the number of list items as there are pieces of info', () =>{
         favorite = {true}
         addFavorite = {mockAddFavorite} /> );
   expect(renderedCard2.find('li').length).toEqual(3);
-})
+});
 
 it('should call the add favorite function if the favorite div is clicked', () =>{
   expect(mockAddFavorite.mock.calls.length).toEqual(0);
   renderedCard.find('.fav').simulate('click');
   expect(mockAddFavorite.mock.calls.length).toEqual(1);
-})
+});
 
 });
 

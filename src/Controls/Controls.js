@@ -53,7 +53,7 @@ export default class Controls extends React.Component {
             Vehicles
         </button>
         <button
-          className="compare-button favorite"
+          className={`compare-button favorite ${this.getActive(3)}`}
           onClick={ () => this.passClickInfo('favorite', 3)}>
             Favorites: {favoriteNumber}
         </button>

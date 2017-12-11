@@ -1,4 +1,4 @@
-export const fetchMovieCrawl = async() =>{
+const fetchMovieCrawl = async() =>{
   const movieFetch = await fetch('https://swapi.co/api/films/');
   const movieData = await movieFetch.json();
   return fetchMovieData(movieData.results);
@@ -15,7 +15,7 @@ const fetchMovieData = (movieArray) => {
   });
 };
 
-export const getVehicle = async() => {
+const getVehicle = async() => {
   const vehicleFetch = await fetch('https://swapi.co/api/vehicles/');
   const vehicleData = await vehicleFetch.json();
   return fetchVehicleData(vehicleData.results);
@@ -35,7 +35,7 @@ const fetchVehicleData = (vehicleData) => {
   });
 };
 
-export const getPlanet = async () => {
+const getPlanet = async () => {
   const planetFetch = await fetch('https://swapi.co/api/planets/');
   const planetData = await planetFetch.json();
   return fetchPlanetData(planetData.results);
@@ -66,7 +66,7 @@ const fetchPlanetData = (planetData) => {
   return Promise.all(unresolvedPromises);
 };
 
-export const getCharacter = async () => {
+const getCharacter = async () => {
   const peoplelFetch = await fetch('https://swapi.co/api/people/');
   const peopleData  = await peoplelFetch.json();
   return fetchPlanetSpecies(peopleData.results);
@@ -92,3 +92,6 @@ const fetchPlanetSpecies = (peopleData) => {
   });
   return Promise.all(unresolvedPromises);
 };
+
+
+export default { getCharacter, fetchMovieCrawl, getVehicle, getPlanet};

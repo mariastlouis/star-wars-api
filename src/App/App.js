@@ -2,19 +2,20 @@ import React, { Component } from 'react';
 import './App.css';
 import Controls from '../Controls/Controls.js';
 import QuoteScroll from '../QuoteScroll/QuoteScroll.js';
-import  { fetchMovieCrawl, getVehicle, getPlanet, getCharacter }
-  from '../helper.js';
+import  helperFunctions from '../helper/helper.js';
 
 import swapilogo from '../images/swapi-logo.png';
 import loading from '../images/loading-background.png';
 import CardContainer from '../CardContainer/CardContainer.js';
+const { fetchMovieCrawl, getVehicle, getPlanet, getCharacter }
+  = helperFunctions;
 
 class App extends Component {
   constructor () {
     super();
     this.state ={
-      movieCrawl:[],
-      character: [],
+      movieCrawl:null,
+      character: null,
       vehicle: [],
       planet: [],
       favorite: [],
@@ -94,10 +95,10 @@ class App extends Component {
         <div className = "header">
           <img src = {swapilogo} className = 'logo' alt = 'logo' />
         </div>   
-         {
-            this.state.movieCrawl.length !== 0 && this.state.character.length ?
-             <QuoteScroll movie = {this.setRandomMovie()}/>  :
-             <img src = {loading } />
+        {
+          this.state.movieCrawl && this.state.character ?
+            <QuoteScroll movie = {this.setRandomMovie()}/>  :
+            <img src = {loading } />
         }
         <Controls clickCategory = {this.clickCategory}
           favorites = {this.state.favorite} />
