@@ -41,16 +41,17 @@ describe('Card', () =>{
   });
 
   it('should match the snapshot', () =>{
-    expect(renderedCard).toMatchSnapshot()
+    expect(renderedCard).toMatchSnapshot();
   });
 
   it('non favorites should be rendered with empty star', () =>{
     expect(renderedCard.containsMatchingElement(
-      <img src="fav-star-empty.png" className="favorite-star" alt="not favorite" />))
+      <img src="fav-star-empty.png" 
+        className="favorite-star" alt="not favorite" />))
       .toEqual(true);
 
   });
-  
+
   it('should render a full star image if the item is a favorite', () =>{
     const renderedCard2 = shallow(
       <Card 
@@ -59,25 +60,28 @@ describe('Card', () =>{
         favorite = {true}
         addFavorite = {mockAddFavorite} /> );
  
-    expect(renderedCard2.containsMatchingElement(<img src = "fav-star-full.png" className = "favorite-star" alt = "favorite" />)).toEqual(true);
-   });
+    expect(renderedCard2.containsMatchingElement(
+      <img src = "fav-star-full.png" 
+        className = "favorite-star" 
+        alt = "favorite" />)).toEqual(true);
+  });
 
-it ('should render the number of list items as there are pieces of info', () =>{
-  expect(renderedCard.find('li').length).toEqual(4);
-  const renderedCard2 = shallow(
+  it('should render the same number of list items and info', () =>{
+    expect(renderedCard.find('li').length).toEqual(4);
+    const renderedCard2 = shallow(
       <Card 
         name = 'Digger Crawler'
         info = {mockInfoThree}
         favorite = {true}
         addFavorite = {mockAddFavorite} /> );
-  expect(renderedCard2.find('li').length).toEqual(3);
-});
+    expect(renderedCard2.find('li').length).toEqual(3);
+  });
 
-it('should call the add favorite function if the favorite div is clicked', () =>{
-  expect(mockAddFavorite.mock.calls.length).toEqual(0);
-  renderedCard.find('.fav').simulate('click');
-  expect(mockAddFavorite.mock.calls.length).toEqual(1);
-});
+  it('should call the add favorite function if fav is clicked', () =>{
+    expect(mockAddFavorite.mock.calls.length).toEqual(0);
+    renderedCard.find('.fav').simulate('click');
+    expect(mockAddFavorite.mock.calls.length).toEqual(1);
+  });
 
 });
 
