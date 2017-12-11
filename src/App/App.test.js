@@ -1,11 +1,9 @@
 import React from 'react';
 import App from './App.js';
-import { shallow} from 'enzyme';
+import { shallow } from 'enzyme';
 
 
 let renderedApp;
-
-// const mockEvent = { preventDefault: jest.fn() }
 
 const mockFavorite = [
   {
@@ -18,7 +16,7 @@ const mockFavorite = [
       Species: 'Human'
     }
   },
-    {
+  {
     name: 'Leia Organa',
     favorite: true,
     info: {
@@ -28,7 +26,7 @@ const mockFavorite = [
       Species: 'Human'
     }
   }
-]
+];
 
 const mockCharacter = [
   {
@@ -41,21 +39,13 @@ const mockCharacter = [
       Species: 'Droid'
     }
   }
-]
-
-let originalTimeout;
+];
 
 describe('App state test', () =>{
   beforeEach(() =>{
-    renderedApp = shallow(<App /> ,{disableLifecycleMethods: true});
-    originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
-    jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000;
+    renderedApp = shallow(<App />, {disableLifecycleMethods: true});
   });
 
-  afterEach(function() {
-      jasmine.DEFAULT_TIMEOUT_INTERVAL = originalTimeout;
-    });
-  
   it('should render correctly', () =>{
     expect(renderedApp).toBeDefined();
   });
@@ -78,7 +68,7 @@ describe('App state test', () =>{
     expect(renderedApp.state()).toEqual(expectedState);
   });
 
-  it('should have a default category of character and change categories when function called', async () =>{
+  it('should change categories when function called', async () =>{
     await renderedApp.update();
     expect(renderedApp.state('category')).toEqual('character');
     await renderedApp.instance().clickCategory('planet');
@@ -108,7 +98,7 @@ describe('App state test', () =>{
     expect(renderedApp.state('favorite').length).toEqual(2);
   });
 
-  it('should have 3 favorites if another is added with addFavorite function', async() =>{
+  it('should have 3 favorites if another is added', async() =>{
     await renderedApp.update();
 
     renderedApp.setState({favorite: mockFavorite, character: mockCharacter});

@@ -5,18 +5,18 @@ const fetchMovieCrawl = async() =>{
 };
 
 const fetchMovieData = (movieArray) => {
-try{ 
-  return movieArray.map(movie => {
-    return {
-      title: movie.title,
-      releaseDate: movie.release_date,
-      openingCrawl: movie.opening_crawl,
-      id: movie.epsisode_id
-    };
-  });
-} catch (type) {
-  return Error('Fetch failed')
-}
+  try { 
+    return movieArray.map(movie => {
+      return {
+        title: movie.title,
+        releaseDate: movie.release_date,
+        openingCrawl: movie.opening_crawl,
+        id: movie.epsisode_id
+      };
+    });
+  } catch (type) {
+    return Error('Fetch failed');
+  }
 };
 
 const getVehicle = async() => {
@@ -26,20 +26,20 @@ const getVehicle = async() => {
 };
 
 const fetchVehicleData = (vehicleData) => {
-try {  
-  return vehicleData.map(vehicle =>{
-    return {
-      name: vehicle.name,
-      favorite: false,
-      info: {
-        Model: vehicle.model,
-        Class: vehicle.vehicle_class,
-        Passengers: vehicle.passengers
-      }
-    };
-  });
-} catch (type) {
-  return Error('Fetch failed')
+  try {  
+    return vehicleData.map(vehicle =>{
+      return {
+        name: vehicle.name,
+        favorite: false,
+        info: {
+          Model: vehicle.model,
+          Class: vehicle.vehicle_class,
+          Passengers: vehicle.passengers
+        }
+      };
+    });
+  } catch (type) {
+    return Error('Fetch failed');
   }  
 };
 
@@ -50,32 +50,32 @@ const getPlanet = async () => {
 };
 
 const fetchPlanetData = (planetData) => {
-try {  
-  const unresolvedPromises = planetData.map(async(planet) =>{
-    const planetResidents = planet.residents;
-    const residentPromises = planetResidents.map(async(resident) =>{
-      const residentFetch = await fetch(resident);
-      const residentData = await residentFetch.json();
-      return residentData.name;
+  try {  
+    const unresolvedPromises = planetData.map(async(planet) =>{
+      const planetResidents = planet.residents;
+      const residentPromises = planetResidents.map(async(resident) =>{
+        const residentFetch = await fetch(resident);
+        const residentData = await residentFetch.json();
+        return residentData.name;
+      });
+      const residentNames = await Promise.all(residentPromises);
+
+      return {
+        name: planet.name,
+        favorite: false,
+        info: {
+          Climate: planet.climate,
+          Population: planet.population,
+          Residents: residentNames
+          
+        }
+
+      };
     });
-    const residentNames = await Promise.all(residentPromises);
-
-    return {
-      name: planet.name,
-      favorite: false,
-      info: {
-        Climate: planet.climate,
-        Population: planet.population,
-        Residents: residentNames
-        
-      }
-
-    };
-  });
-  return Promise.all(unresolvedPromises);
-} catch (type) {
-  return Error('Fetch failed')
-}  
+    return Promise.all(unresolvedPromises);
+  } catch (type) {
+    return Error('Fetch failed');
+  }  
 };
 
 const getCharacter = async () => {
@@ -85,27 +85,27 @@ const getCharacter = async () => {
 };
 
 const fetchPlanetSpecies = (peopleData) => {
-try {  
-  const unresolvedPromises = peopleData.map(async(character) => {
-    let homeworldFetch = await fetch(character.homeworld);
-    let homeworldData = await homeworldFetch.json();
-    let speciesFetch = await fetch(character.species);
-    let speciesData = await speciesFetch.json();
+  try {  
+    const unresolvedPromises = peopleData.map(async(character) => {
+      let homeworldFetch = await fetch(character.homeworld);
+      let homeworldData = await homeworldFetch.json();
+      let speciesFetch = await fetch(character.species);
+      let speciesData = await speciesFetch.json();
 
-    return {
-      name: character.name,
-      favorite: false,
-      info: {
-        Species: speciesData.name,
-        Language: speciesData.language,
-        Homeworld: homeworldData.name,
-        Population: homeworldData.population
-      }
-    };
-  });
-  return Promise.all(unresolvedPromises);
-} catch (type) {
-  return Error('Fetch failed')
+      return {
+        name: character.name,
+        favorite: false,
+        info: {
+          Species: speciesData.name,
+          Language: speciesData.language,
+          Homeworld: homeworldData.name,
+          Population: homeworldData.population
+        }
+      };
+    });
+    return Promise.all(unresolvedPromises);
+  } catch (type) {
+    return Error('Fetch failed');
   }  
 };
 
