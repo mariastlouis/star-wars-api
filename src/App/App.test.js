@@ -6,6 +6,20 @@ import { shallow} from 'enzyme';
 
 let renderedApp;
 
+const mockEvent = { preventDefault: jest.fn() }
+
+const mockCharacter = [
+  {
+    name: 'Luke Skywalker',
+    favorite: true,
+    info: {
+      Homeworld: "Tatooine",
+      Language: "Galactic Basic",
+      Population: 200000,
+      Species: 'Human'
+    }
+  }
+]
 
 
 describe('App test', () =>{
@@ -35,12 +49,28 @@ describe('App test', () =>{
     expect(renderedApp.state()).toEqual(expectedState);
   });
 
-  it('should set the state of the planets when the planet button is clicked',
-    async () =>{
-      expect(renderedApp.state('vehicle').length).toEqual(0);
-      await renderedApp.instance().clickCategory('vehicle');
+  it('should have a default category of character and change categories when function called', async () =>{
+    await renderedApp.update();
+    expect(renderedApp.state('category')).toEqual('character');
+    await renderedApp.instance().clickCategory('planet');
+    expect(renderedApp.state('category')).toEqual('planet');
+  });
 
-      await expect(renderedApp.state('vehicle').length).toEqual(10);
-    });
+  it('should set the state of the category clicked', async ()=>{
+    await renderedApp.update();
+
+    expect(renderedApp.state('planet').length).toEqual(0);
+   
+    await renderedApp.instance().clickCategory('planet');
+   
+    expect(renderedApp.state('planet').length).toEqual(10);
+
+    expect(renderedApp.state('vehicle').length).toEqual(0);
+
+    await renderedApp.instance().clickCategory('vehicle');
+
+    expect(renderedApp.state('vehicle').length).toEqual(10);
+
+  });
 
 });
